@@ -4,7 +4,7 @@
 
 {% block header %}
 {{ include('validation_errors.html') }}
-{{ include('nav.html') }}
+{{ include('nav.views.html') }}
 {% endblock %}
 
 {% block head %}
@@ -28,7 +28,11 @@
                         <th scope="col">Actions</th>
                     </tr>
                     </thead>
-                {% endif %}
+                    {% else %}
+                    <span>There is no registered appointments at the moment.</span>
+                    {% endif %}
+
+
                 {% for appointment in appointments %}
                     <tbody>
                         <tr>
@@ -56,7 +60,6 @@
                     </tbody>
                 </table>
             {% endfor %}
-            {% else %}
-                <span>There is no registered appointments at the moment.</span>
+
         </section>
 {% endblock %}

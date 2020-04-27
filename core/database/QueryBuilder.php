@@ -65,7 +65,7 @@ class QueryBuilder
      */
     public function findturno($table, $fecha_turno, $horario_turno)
     {
-        $sql = "SELECT COUNT(*) as 'cantidad', * FROM {$table} WHERE fecha_turno={$fecha_turno} AND horario_turno{$horario_turno}";
+        $sql = "SELECT * , COUNT(*) as 'cantidad'  FROM {$table} WHERE fecha_turno={$fecha_turno} AND horario_turno='{$horario_turno}'";
         try {
             $statement = $this->pdo->prepare($sql);
             $statement->execute();
@@ -99,17 +99,24 @@ class QueryBuilder
      * @param  array  $parameters
      */
     public function insert($table, $parameters)
-    {
-        $parameters = $this->cleanParameterName($parameters);
+    {      
+       $parameters = $this->cleanParameterName($parameters);
+       echo "antes del sprint <br>";
+        var_dump($parameters);
         $sql = sprintf(
             'insert into %s (%s) values (%s)',
             $table,
             implode(', ', array_keys($parameters)),
-            ':' . implode(', :', array_keys($parameters))
+             implode(',', array_keys($parameters))
         );
-
+        echo "<br> despues del sprint <br>";
+        var_dump($sql);
         try {
             $statement = $this->pdo->prepare($sql);
+            echo "statement <br>";
+            var_dump($statement);
+            echo " <br> parametros <br>";
+            var_dump($parameters);
             $statement->execute($parameters);
         } catch (Exception $e) {
             $this->sendToLog($e);

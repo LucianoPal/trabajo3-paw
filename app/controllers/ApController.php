@@ -4,6 +4,7 @@ namespace App\Controllers;
 use App\Core\Controller;
 use App\models\Appointment;
 
+
 /*/**
  * @property Appointment models
  */
@@ -16,11 +17,11 @@ class ApController extends Controller
 
     public function index()
     {
-        return view('views/index.views.html');
+       return view('index.views');
     }
 
     public  function newAp() {
-        return view('views/new.appointment.html');
+        return view('new.appointment');
     }
 
     public function saveAp ()
@@ -44,10 +45,10 @@ class ApController extends Controller
         $errores = array_shift($respuesta);
         if ($errores == "Correcto") {
             $ap = $appointment->findturno();
-            return view('views/views.appointment', compact('ap')) ;
+            return view('views.appointment', compact('ap')) ;
         }
         else {
-            return view('views/error.views', compact('errores'));
+            return view('error.views', compact('errores'));
         }
     }
 
@@ -60,6 +61,6 @@ class ApController extends Controller
     public function viewAp() {
         $appointment = new Appointment();
         $ap = $appointment->findid($_GET['id']);
-        return view('views/views.appointment.html', compact('ap'));
+        return view('views.appointment', compact('ap'));
     }
 }
