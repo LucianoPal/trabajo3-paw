@@ -54,7 +54,7 @@ class Router
     }
 
     /**
-     * Load the requested URI's associated controller method.
+     * Load the requested URI's associated controllers method.
      *
      * @param string $uri
      * @param string $requestType
@@ -71,7 +71,7 @@ class Router
     }
 
     /**
-     * Load and call the relevant controller action.
+     * Load and call the relevant controllers action.
      *
      * @param string $controller
      * @param string $action

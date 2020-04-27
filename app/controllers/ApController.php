@@ -1,27 +1,26 @@
 <?php
-namespace Appcontroller;
+namespace App\Controllers;
 
-use App\core\Controller;
-use App\model\Appointment;
-use App\model\Serialize;
+use App\Core\Controller;
+use App\models\Appointment;
 
 /*/**
- * @property Appointment model
+ * @property Appointment models
  */
 class ApController extends Controller
 {
     /*public function __construct()
     {
-        $this->model = new Appointment();
+        $this->models = new Appointment();
     }*/
 
     public function index()
     {
-        return view('view/index.view.php');
+        return view('views/index.views.html');
     }
 
     public  function newAp() {
-        return view('view/new.appointment.php');
+        return view('views/new.appointment.html');
     }
 
     public function saveAp ()
@@ -42,13 +41,13 @@ class ApController extends Controller
         );
 
         $respuesta = $appointment->validar($params);
-        $respuesta_2 = array_shift($respuesta);
-        if ($respuesta_2 == "Correcto") {
+        $errores = array_shift($respuesta);
+        if ($errores == "Correcto") {
             $ap = $appointment->findturno();
-            return view('view/view.appointment', compact('ap')) ;
+            return view('views/views.appointment', compact('ap')) ;
         }
         else {
-            return view('view/error.view', compact('respuesta_2'));
+            return view('views/error.views', compact('errores'));
         }
     }
 
@@ -61,6 +60,6 @@ class ApController extends Controller
     public function viewAp() {
         $appointment = new Appointment();
         $ap = $appointment->findid($_GET['id']);
-        return view('view/view.appointment.php', compact('ap'));
+        return view('views/views.appointment.html', compact('ap'));
     }
 }

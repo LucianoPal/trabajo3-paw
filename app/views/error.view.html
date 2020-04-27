@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+
+{% block title %}Error{% endblock %}
+
+{% block header %}
+{{ include('validation_errors.html') }}
+{{ include('nav.html') }}
+{% endblock %}
+
+{% block head %}
+{{ parent() }}
+<meta name="keywords" content="PAW,2020,Templates,PHP">
+{% endblock %}
+
+{% block main %}
+    <section id="errors">
+        <h1>Errores</h1>
+        {% if errores %}
+        <ul>
+            {% for error in errores %}
+                <li>{{ error }}</li>
+            {% endfor %}
+        </ul>
+        {% endif %}
+    </section>
+{% endblock %}

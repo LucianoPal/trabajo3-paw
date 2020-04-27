@@ -1,4 +1,4 @@
-USE pawtp;
+USE pawtp3;
 
 CREATE TABLE appointments (
     id INTEGER PRIMARY KEY AUTO_INCREMENT,
@@ -8,8 +8,9 @@ CREATE TABLE appointments (
     edad SMALLINT,
     talla_calzado SMALLINT,
     altura SMALLINT,
-    color_pelo TEXT,
     fecha_nacimiento DATE NOT NULL,
-    fecha_turno DATETIME NOT NULL,
+    color_pelo TEXT,
+    fecha_turno DATE NOT NULL,
+    horario_turno TIME NOT NULL,
     diagnotico MEDIUMBLOB
 );

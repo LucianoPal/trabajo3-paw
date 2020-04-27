@@ -9,5 +9,5 @@ $router->post('save_appointment', 'ApController@saveAp');
 $router->post('del_appointment', 'ApController@delAp');
 $router->post('upt_appointment', 'ApController@uptAp');
 
-$router->get('not_found', 'ErController@notFound');
-$router->get('internal_error', 'ErController@internalError');
+$router->get('not_found', 'ErrorController@not_found');
+$router->get('internal_error', 'ErrorController@internal_error');

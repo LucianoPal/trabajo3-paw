@@ -3,7 +3,7 @@
 use App\Core\App;
 
 /**
- * Require a view.
+ * Require a views.
  *
  * @param  string $name
  * @param  array  $data
