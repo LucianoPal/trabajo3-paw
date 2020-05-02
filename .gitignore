@@ -3,5 +3,6 @@
 *.jpeg
 *appointmets.json
 *.idea/
-*.app/view/cache/
+*app/views/cache/
 *vendor/
+*logs/
