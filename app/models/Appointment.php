@@ -8,6 +8,7 @@ use App\Core\App;
 class Appointment extends Model
 {
     protected $table = 'appointments';
+    protected $booleano = true;
     public $msg = array();
     public $parametros = array();
 
@@ -175,21 +176,44 @@ class Appointment extends Model
 
     public function validar($params)
     {
-        $booleano = true;
         if (empty($params)) {
-            $booleano = false;
+            $this->booleano = false;
         } else {
             foreach ($params as $param => $valor) {
                 $method_name = "valid_" . $param;
-                $booleano = $booleano && self::$method_name($valor);
+                $this->booleano = $this->booleano && self::$method_name($valor);
             }
         }
+    }
 
-        if ($booleano) {
+    public function validarInsert($params) {
+        $this->booleano = true;
+        $this->validar($params);
+        if ($this->booleano) {
             $this->db->insert($this->table, $this->parametros);
-            $id = $this->db->findturno($this->table, $this->parametros['fecha_turno'], $this->parametros['horario_turno']);
+            $row = $this->db->findturno($this->table, $this->parametros['fecha_turno'], $this->parametros['horario_turno']);
             $logger = App::get('logger');
-            $logger->info("A", $id);
+            $logger->info("A", $row);
+
+            $error = "Correcto";
+            array_push($this->msg, $error);
+
+            return $this->msg;
+        }else{
+
+            array_unshift($this->msg, "Incorrecto");
+            return $this->msg;
+        }
+    }
+
+    public function validarUpdate($params, $id) {
+        $this->booleano = true;
+        $this->validar($params);
+        if ($this->booleano) {
+            $this->db->update($this->table, $id, $params);
+            $row = $this->db->find($this->table, $id);
+            $logger = App::get('logger');
+            $logger->info("M", $row);
 
             $error = "Correcto";
             array_push($this->msg, $error);
@@ -212,5 +236,12 @@ class Appointment extends Model
 
     public function all() {
         return $this->db->selectAll($this->table);
+    }
+
+    public function delete($id) {
+        $row = $this->findid($id);
+        $logger = App::get('logger');
+        $logger->info("B", $row);
+        $this->db->delete($this->table, $id);
     }
 }

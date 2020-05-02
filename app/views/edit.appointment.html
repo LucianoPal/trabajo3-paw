@@ -14,7 +14,7 @@
 
 {% block main %}
 <form class="edit" action="/upt_appointment" method="post" enctype="multipart/form-data">
-    <label>ID: <input type="id" name="id" value={{ ap.id }}></label><br>
+    <label>ID: <input type="id" name="id" readonly value={{ ap.id }}></label><br>
     <label>Nombre: <input type="text" name="nombre" value={{ ap.nombre }}></label><br>
     <label>Email: <input type="email" name="email" value={{ ap.email }}></label><br>
     <label>Telefono: <input type="tel" name="telefono" value={{ ap.telefono }}></label><br>
@@ -50,6 +50,9 @@
     {% endif %}
 
     <input type="submit" value="Enviar" />
-    <input type="reset" value="Limpiar"  />
+    <button type="button" onclick="location.href='list_appointments'">Cancelar</button>
+    <!--<form method="get" id="return" action="/list_appointments">
+        <button type="submit" form="return">Cancelar</button>
+    </form>-->
 </form>
 {% endblock %}

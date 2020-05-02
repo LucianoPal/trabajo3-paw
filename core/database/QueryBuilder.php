@@ -71,9 +71,6 @@ class QueryBuilder
             $fecha_turno,
             $horario_turno
         );
-        //$sql = "SELECT * , COUNT(*) as 'cantidad' FROM {$table} WHERE fecha_turno='{$fecha_turno}' AND horario_turno='{$horario_turno}'";
-        //echo "<br>SQL <br>";
-        //var_dump($sql);
         try {
             $statement = $this->pdo->prepare($sql);
             $statement->execute();
@@ -89,7 +86,7 @@ class QueryBuilder
      * @param string $table
      * @param integer $id
      */
-    public function destroy($table, $id)
+    public function delete($table, $id)
     {
         $sql = "DELETE FROM {$table} where id={$id};";
         try {
