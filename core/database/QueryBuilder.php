@@ -65,7 +65,15 @@ class QueryBuilder
      */
     public function findturno($table, $fecha_turno, $horario_turno)
     {
-        $sql = "SELECT * , COUNT(*) as 'cantidad'  FROM {$table} WHERE fecha_turno={$fecha_turno} AND horario_turno='{$horario_turno}'";
+        $sql = sprintf(
+            'SELECT * , COUNT(*) as \'cantidad\' FROM %s WHERE fecha_turno=\'%s\' AND horario_turno=\'%s\'',
+            $table,
+            $fecha_turno,
+            $horario_turno
+        );
+        //$sql = "SELECT * , COUNT(*) as 'cantidad' FROM {$table} WHERE fecha_turno='{$fecha_turno}' AND horario_turno='{$horario_turno}'";
+        echo "<br>SQL <br>";
+        var_dump($sql);
         try {
             $statement = $this->pdo->prepare($sql);
             $statement->execute();
@@ -99,7 +107,7 @@ class QueryBuilder
      * @param  array  $parameters
      */
     public function insert($table, $parameters)
-    {      
+    {
         $parameters = $this->cleanParameterName($parameters);
         echo "<br>antes del sprint <br>";
         var_dump($parameters);

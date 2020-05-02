@@ -4,7 +4,7 @@
 
 {% block header %}
 {{ include('validation_errors.html') }}
-{{ include('nav.html') }}
+{{ include('nav.views.html') }}
 {% endblock %}
 
 {% block head %}
@@ -15,9 +15,9 @@
 {% block main %}
     <section id="errors">
         <h1>Errores</h1>
-        {% if errores %}
+        {% if respuesta %}
         <ul>
-            {% for error in errores %}
+            {% for error in respuesta %}
                 <li>{{ error }}</li>
             {% endfor %}
         </ul>

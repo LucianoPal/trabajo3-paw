@@ -38,7 +38,7 @@
                         <tr>
                             <td>{{ appointment.id }}</td>
                             <td>{{ appointment.fecha_turno }}</td>
-                            <td>{{ appointment.hora_turno }}</td>
+                            <td>{{ appointment.horario_turno }}</td>
                             <td>{{ appointment.nombre }}</td>
                             <td>{{ appointment.telefono }}</td>
                             <td>{{ appointment.email }}</td>
@@ -58,8 +58,8 @@
                             </td>
                         </tr>
                     </tbody>
-                </table>
-            {% endfor %}
+                {% endfor %}
+            </table>
 
         </section>
 {% endblock %}

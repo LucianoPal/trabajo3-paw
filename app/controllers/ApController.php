@@ -47,8 +47,11 @@ class ApController extends Controller
             $ap = $appointment->findturno();
             return view('views.appointment', compact('ap')) ;
         }
-        else {
-            return view('error.views', compact('errores'));
+        elseif ($errores == "Incorrecto") {
+            return view('error.views', compact('respuesta'));
+        }
+        elseif ($errores == "Imagen Pesada") {
+            return view('error.views', compact('respuesta'));
         }
     }
 
