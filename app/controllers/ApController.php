@@ -40,7 +40,7 @@ class ApController extends Controller
             "horario_turno" => $_POST["horario_turno"],
             "diagnostico" => $_FILES,
         );
-
+        var_dump($params);
         $respuesta = $appointment->validar($params);
         $errores = array_shift($respuesta);
         if ($errores == "Correcto") {

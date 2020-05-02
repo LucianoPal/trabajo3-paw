@@ -2,4 +2,4 @@
 *.jpg
 *.jpeg
 *appointmets.json
-*config.php
+*.idea\

@@ -101,7 +101,7 @@ class QueryBuilder
     public function insert($table, $parameters)
     {      
        $parameters = $this->cleanParameterName($parameters);
-       echo "antes del sprint <br>";
+       echo "<br>antes del sprint <br>";
         var_dump($parameters);
         $sql = sprintf(
             'insert into %s (%s) values (%s)',

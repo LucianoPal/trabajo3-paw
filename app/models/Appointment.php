@@ -21,12 +21,13 @@ class Appointment extends Model
                 array_push($this->msg, $error);
                 $booleano= false;
             }
+            else {
+                $this->parametros['nombre'] = $valor;
+            }
         } elseif ($name == ''){
             $error = "El nombre es requerido";
             array_push($this->msg, $error);
             $booleano= false;
-        } else {
-            $this->parametros['nombre'] = $valor;
         }
         return $booleano;
     }
@@ -185,6 +186,8 @@ class Appointment extends Model
         }
 
         if ($booleano) {
+            echo "<br> model antes de insert <br>";
+            var_dump($this->parametros);
             $this->db->insert($this->table, $this->parametros);
             $id = $this->db->findturno($this->table, $this->parametros['fecha_turno'], $this->parametros['horario_turno']);
             $logger = App::get('logger');

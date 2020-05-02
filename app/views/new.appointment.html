@@ -14,46 +14,46 @@
 
 {% block main %}
     <form class="new" action="/save_appointment" method="post" enctype="multipart/form-data">
-        <label><b>Nombre:</b> (*)</label><br>
-        <input type="text" name="nombre" required>
-        <label><b>Email:</b> (*)</label><br>
-        <input type="email" name="email" required>
-        <label><b>Telefono:</b> (*)</label><br>
-        <input type="tel" name="telefono" required>
-        <label>Edad:</label><br>
-        <input type="text" name="edad" maxlength="2" max="99">
-        <label>Talla de calzado:</label><br>
-        <input type="text" name="talla_calzado" maxlength="2">
-        <label>Altura:</label><br>
-        <input type="range" name="altura" min="100" max="200" step="10" value="150" list="tickmarks">
-        <datalist id="tickmarks">
-            <option value="100" label="1mts">
-            <option value="110">
-            <option value="120">
-            <option value="130">
-            <option value="140">
-            <option value="150" label="1,50">
-            <option value="160">
-            <option value="170">
-            <option value="180">
-            <option value="190">
-            <option value="200" label="2mts">
-        </datalist>
-        <label><b>Fecha de nacimiento:</b> (*)</label><br>
-        <input type="date" name="fecha_nacimiento" required>
-        <label>Color de pelo:</label><br>
-        <select name="color_pelo">
+        <label><b>Nombre:</b> (*)<input type="text" name="nombre" required></label><br>
+
+        <label><b>Email:</b> (*)<input type="email" name="email" required></label><br>
+
+        <label><b>Telefono:</b> (*)<input type="tel" name="telefono" required></label><br>
+
+        <label>Edad:<input type="text" name="edad" maxlength="2" max="99"></label><br>
+
+        <label>Talla de calzado:<input type="text" name="talla_calzado" maxlength="2"></label><br>
+
+        <label>Altura:<input type="range" name="altura" min="100" max="200" step="10" value="150" list="tickmarks">
+            <datalist id="tickmarks">
+                <option value="100" label="1mts">
+                <option value="110">
+                <option value="120">
+                <option value="130">
+                <option value="140">
+                <option value="150" label="1,50">
+                <option value="160">
+                <option value="170">
+                <option value="180">
+                <option value="190">
+                <option value="200" label="2mts">
+            </datalist></label><br>
+
+        <label><b>Fecha de nacimiento:</b> (*)        <input type="date" name="fecha_nacimiento" required></label><br>
+
+        <label>Color de pelo:<select name="color_pelo">
             <option>morocho</option>
             <option>rubio</option>
             <option>colorado</option>
             <option>castanio</option>
-        </select>
-        <label><b>Fecha de turno:</b> (*)</label><br>
-        <input type="date" name="fecha_turno" required>
-        <label><b>Horiario de turno(hh:min):</b> (*)</label><br>
-        <input type="time" min="08:00" max="17:00" step="900" name="horario_turno" required>
-        <label>Diagnostico</label><br>
-        <input type="file" name="diagnostico" accept="image/jpeg, image/x-png, image/x-jpg">
+        </select></label><br>
+
+        <label><b>Fecha de turno:</b> (*)<input type="date" name="fecha_turno" required></label><br>
+
+        <label><b>Horiario de turno(hh:min):</b> (*)<input type="time" min="08:00" max="17:00" step="900" name="horario_turno" required></label><br>
+
+        <label>Diagnostico<input type="file" name="diagnostico" accept="image/jpeg, image/x-png, image/x-jpg"></label><br>
+
         <input type="submit" value="Enviar" />
         <input type="reset" value="Limpiar"  />
     </form>
