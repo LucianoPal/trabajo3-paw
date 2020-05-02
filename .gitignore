@@ -2,4 +2,6 @@
 *.jpg
 *.jpeg
 *appointmets.json
-*.idea\
+*.idea/
+*.app/view/cache/
+*vendor/
