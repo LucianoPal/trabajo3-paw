@@ -40,7 +40,6 @@ class ApController extends Controller
             "horario_turno" => $_POST["horario_turno"],
             "diagnostico" => $_FILES,
         );
-        var_dump($params);
         $respuesta = $appointment->validar($params);
         $errores = array_shift($respuesta);
         if ($errores == "Correcto") {
@@ -65,5 +64,40 @@ class ApController extends Controller
         $appointment = new Appointment();
         $ap = $appointment->findid($_GET['id']);
         return view('views.appointment', compact('ap'));
+    }
+
+    public function editAp() {
+        $appointment = new Appointment();
+        $ap = $appointment->findid($_GET['id']);
+        return view('edit.appointment', compact('ap'));
+    }
+
+    public function uptAp() {
+        /*$appointment = new Appointment();
+        $params = array(
+            "nombre" => $_POST["nombre"],
+            "email" => $_POST["email"],
+            "telefono" => $_POST["telefono"],
+            "edad" => $_POST["edad"],
+            "talla_calzado" => $_POST["talla_calzado"],
+            "altura" => $_POST["altura"],
+            "fecha_nacimiento" => $_POST["fecha_nacimiento"],
+            "color_pelo" => $_POST["color_pelo"],
+            "fecha_turno" => $_POST["fecha_turno"],
+            "horario_turno" => $_POST["horario_turno"],
+            "diagnostico" => $_FILES,
+        );
+        $respuesta = $appointment->validarUpdate($params, $_GET['id']);
+        $errores = array_shift($respuesta);
+        if ($errores == "Correcto") {
+            $ap = $appointment->findturno();
+            return view('views.appointment', compact('ap')) ;
+        }
+        elseif ($errores == "Incorrecto") {
+            return view('error.views', compact('respuesta'));
+        }
+        elseif ($errores == "Imagen Pesada") {
+            return view('error.views', compact('respuesta'));
+        }*/
     }
 }

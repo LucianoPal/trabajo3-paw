@@ -27,7 +27,7 @@
         <label>Horario de turno(hh:min): <input type="time" name="horario_turno" readonly value={{ ap.horario_turno }}></label><br>
         {% if (ap.image) %}
             <label>Diagnostico</label><br>
-            <img  class="diagnostico" src="data:image/png;base64,{{ image_base_64 }}" />
+            <img  class="diagnostico" src="data:diagnostico/png;base64,{{ image_base_64 }}" />
         {% endif %}
     </form>
 {% endblock %}

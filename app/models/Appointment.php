@@ -138,7 +138,6 @@ class Appointment extends Model
             $booleano= false;
         } else {
             $row = $this->db->findturno($this->table, $this->parametros['fecha_turno'], $valor);
-            var_dump($row['cantidad']);
             if ($row['cantidad'] > 0) {
                 $error = "Ya existe un turno en esa fecha y horario";
                 array_push($this->msg, $error);
@@ -187,12 +186,10 @@ class Appointment extends Model
         }
 
         if ($booleano) {
-            echo "<br> model antes de insert <br>";
-            var_dump($this->parametros);
             $this->db->insert($this->table, $this->parametros);
             $id = $this->db->findturno($this->table, $this->parametros['fecha_turno'], $this->parametros['horario_turno']);
             $logger = App::get('logger');
-            $logger->info("A, $id");
+            $logger->info("A", $id);
 
             $error = "Correcto";
             array_push($this->msg, $error);
@@ -201,8 +198,6 @@ class Appointment extends Model
         }else{
 
             array_unshift($this->msg, "Incorrecto");
-            echo "<br>";
-            var_dump($this->msg);
             return $this->msg;
         }
     }
