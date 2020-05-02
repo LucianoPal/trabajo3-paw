@@ -191,7 +191,7 @@ class Appointment extends Model
             $this->db->insert($this->table, $this->parametros);
             $id = $this->db->findturno($this->table, $this->parametros['fecha_turno'], $this->parametros['horario_turno']);
             $logger = App::get('logger');
-            $logger->info("A", $id);
+            $logger->info("A, $id");
 
             $error = "Correcto";
             array_push($this->msg, $error);

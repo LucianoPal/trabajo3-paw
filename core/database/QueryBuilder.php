@@ -100,20 +100,20 @@ class QueryBuilder
      */
     public function insert($table, $parameters)
     {      
-       $parameters = $this->cleanParameterName($parameters);
-       echo "<br>antes del sprint <br>";
+        $parameters = $this->cleanParameterName($parameters);
+        echo "<br>antes del sprint <br>";
         var_dump($parameters);
         $sql = sprintf(
             'insert into %s (%s) values (%s)',
             $table,
             implode(', ', array_keys($parameters)),
-             implode(',', array_keys($parameters))
+            ':' . implode(', :', array_keys($parameters))
         );
         echo "<br> despues del sprint <br>";
         var_dump($sql);
         try {
             $statement = $this->pdo->prepare($sql);
-            echo "statement <br>";
+            echo "<br> statement <br>";
             var_dump($statement);
             echo " <br> parametros <br>";
             var_dump($parameters);
