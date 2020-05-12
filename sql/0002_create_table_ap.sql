@@ -12,5 +12,5 @@ CREATE TABLE appointments (
     color_pelo TEXT,
     fecha_turno DATE NOT NULL,
     horario_turno TIME NOT NULL,
-    diagnotico MEDIUMBLOB
+    diagnostico MEDIUMBLOB
 );

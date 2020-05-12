@@ -151,9 +151,12 @@ class Appointment extends Model
     }
 
     function valid_diagnostico($valor) {
+        var_dump($valor);
         $booleano = true;
         if (!empty($valor["diagnostico"]["name"])) {
             $extension = $valor["diagnostico"]["type"];
+            $extension = strtolower($extension);
+            //var_dump($extension);
             if ($extension != 'image/png' && $extension != 'image/jpg' && $extension != 'image/jpeg') {
                 $error = "Solo se permite archivos con extensión JPG y PNG.";
                 array_push($this->msg, $error);
@@ -161,6 +164,7 @@ class Appointment extends Model
             }
 
             $size = $valor["diagnostico"]["size"];
+            //var_dump($size);
             if ($size > 10000000) {
                 $error = "Solo se permite archivos menores o iguales a 10 MB.";
                 array_push($this->msg, $error);
@@ -193,6 +197,7 @@ class Appointment extends Model
             $this->db->insert($this->table, $this->parametros);
             $row = $this->db->findturno($this->table, $this->parametros['fecha_turno'], $this->parametros['horario_turno']);
             $logger = App::get('logger');
+            //$logger->info("A", $this->db->find($this->table, $row['id']));
             $logger->info("A", $row);
 
             $error = "Correcto";

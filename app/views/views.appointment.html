@@ -25,7 +25,7 @@
         <label>Color de pelo: <input type="text" name="color_pelo" readonly value={{ ap.color_pelo }}></label><br>
         <label>Fecha de turno: <input type="date" name="fecha_turno" readonly value={{ ap.fecha_turno }}></label><br>
         <label>Horario de turno(hh:min): <input type="time" name="horario_turno" readonly value={{ ap.horario_turno }}></label><br>
-        {% if (ap.image) %}
+        {% if (ap.diagnostico) %}
             <label>Diagnostico</label><br>
             <img  class="diagnostico" src="data:diagnostico/png;base64,{{ image_base_64 }}" />
         {% endif %}
