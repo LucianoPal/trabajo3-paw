@@ -204,7 +204,7 @@ class Appointment extends Model
             array_push($this->msg, $error);
 
             return $this->msg;
-        }else{
+        } else{
 
             array_unshift($this->msg, "Incorrecto");
             return $this->msg;

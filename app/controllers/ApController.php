@@ -63,7 +63,9 @@ class ApController extends Controller
     public function viewAp() {
         $appointment = new Appointment();
         $ap = $appointment->findid($_GET['id']);
-        return view('views.appointment', compact('ap'));
+        $diagnostico64 = base64_encode($ap['diagnostico']);
+        //var_dump($ap);
+        return view('views.appointment', compact('ap', 'diagnostico64'));
     }
 
     public function editAp() {
