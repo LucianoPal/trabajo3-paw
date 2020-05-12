@@ -40,17 +40,22 @@ class ApController extends Controller
             "horario_turno" => $_POST["horario_turno"],
             "diagnostico" => $_FILES,
         );
-        $respuesta = $appointment->validarInsert($params);
-        $errores = array_shift($respuesta);
-        if ($errores == "Correcto") {
-            $ap = $appointment->findturno();
-            return view('views.appointment', compact('ap')) ;
-        }
-        elseif ($errores == "Incorrecto") {
-            return view('error.views', compact('respuesta'));
-        }
-        elseif ($errores == "Imagen Pesada") {
-            return view('error.views', compact('respuesta'));
+        $boolean = $appointment->validarImagen($params["diagnostico"]);
+        if ($boolean) {
+            $respuesta = $appointment->validarInsert($params);
+            $errores = array_shift($respuesta);
+            if ($errores == "Correcto") {
+                $ap = $appointment->findturno();
+                $diagnostico64 = base64_encode($ap["diagnostico"]);
+                return view('views.appointment', compact('ap', 'diagnostico64')) ;
+            }
+            elseif ($errores == "Incorrecto") {
+                return view('error.views', compact('respuesta'));
+            }
+        } else {
+            $diagnostico = array_pop($params);
+            $ap = $params;
+            return view('error.image', compact('ap'));
         }
     }
 
@@ -64,14 +69,14 @@ class ApController extends Controller
         $appointment = new Appointment();
         $ap = $appointment->findid($_GET['id']);
         $diagnostico64 = base64_encode($ap['diagnostico']);
-        //var_dump($ap);
         return view('views.appointment', compact('ap', 'diagnostico64'));
     }
 
     public function editAp() {
         $appointment = new Appointment();
         $ap = $appointment->findid($_GET['id']);
-        return view('edit.appointment', compact('ap'));
+        $diagnostico64 = base64_encode($ap['diagnostico']);
+        return view('edit.appointment', compact('ap', 'diagnostico64'));
     }
 
     public function uptAp() {
@@ -81,7 +86,8 @@ class ApController extends Controller
         $errores = array_shift($respuesta);
         if ($errores == "Correcto") {
             $ap = $appointment->findid($_POST['id']);
-            return view('views.appointment', compact('ap')) ;
+            $diagnostico64 = base64_encode($ap['diagnostico']);
+            return view('views.appointment', compact('ap', 'diagnostico64')) ;
         }
         elseif ($errores == "Incorrecto") {
             return view('error.views', compact('respuesta'));
@@ -110,9 +116,8 @@ class ApController extends Controller
         if ($old["altura"] != $_POST["altura"]) $params["altura"] = $_POST["altura"];
         if ($old["fecha_nacimiento"] != $_POST["fecha_nacimiento"]) $params["fecha_nacimiento"] = $_POST["fecha_nacimiento"];
         if ($old["color_pelo"] != $_POST["color_pelo"]) $params["color_pelo"] = $_POST["color_pelo"];
-        if ($old["fecha_turno"] != $_POST["fecha_turno"]) $params["fecha_turno"] = $_POST["fecha_turno"];
-        if ($old["horario_turno"] != $_POST["horario_turno"]) $params["horario_turno"] = $_POST["horario_turno"];
-        //if ($old["diagnostico"] != $_POST["diagnostico"]) $params["diagnostico"] = $_FILES;
+        $params["fecha_turno"] = $_POST["fecha_turno"];
+        $params["horario_turno"] = $_POST["horario_turno"];
 
         return $params;
     }

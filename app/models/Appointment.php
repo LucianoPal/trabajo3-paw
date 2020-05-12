@@ -9,6 +9,7 @@ class Appointment extends Model
 {
     protected $table = 'appointments';
     protected $booleano = true;
+    protected $imagen_pesada = false;
     public $msg = array();
     public $parametros = array();
 
@@ -151,12 +152,10 @@ class Appointment extends Model
     }
 
     function valid_diagnostico($valor) {
-        var_dump($valor);
         $booleano = true;
         if (!empty($valor["diagnostico"]["name"])) {
             $extension = $valor["diagnostico"]["type"];
             $extension = strtolower($extension);
-            //var_dump($extension);
             if ($extension != 'image/png' && $extension != 'image/jpg' && $extension != 'image/jpeg') {
                 $error = "Solo se permite archivos con extensión JPG y PNG.";
                 array_push($this->msg, $error);
@@ -164,11 +163,18 @@ class Appointment extends Model
             }
 
             $size = $valor["diagnostico"]["size"];
-            //var_dump($size);
             if ($size > 10000000) {
-                $error = "Solo se permite archivos menores o iguales a 10 MB.";
-                array_push($this->msg, $error);
-                $booleano = false;
+                $count = count($this->msg);
+                if ($count != 0) {
+                    $error = "Solo se permite archivos menores o iguales a 10 MB.";
+                    array_push($this->msg, $error);
+                    $booleano = false;
+                } else {
+                    $error = "Imagen Pesada";
+                    array_push($this->msg, $error);
+                    $booleano = false;
+                    $this->imagen_pesada = true;
+                }
             }
 
             if ($booleano){
@@ -176,6 +182,10 @@ class Appointment extends Model
             }
         }
         return $booleano;
+    }
+
+    public function validarImagen($diagnostico) {
+        return $this->valid_diagnostico($diagnostico);
     }
 
     public function validar($params)
@@ -205,7 +215,9 @@ class Appointment extends Model
 
             return $this->msg;
         } else{
-
+            if ($this->imagen_pesada) {
+                array_push($this->msg, $this->parametros);
+            }
             array_unshift($this->msg, "Incorrecto");
             return $this->msg;
         }

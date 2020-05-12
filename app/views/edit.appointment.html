@@ -1,9 +1,8 @@
 {% extends "base.html" %}
 
-{% block title %}Home{% endblock %}
+{% block title %}Edit Appointment{% endblock %}
 
 {% block header %}
-{{ include('validation_errors.html') }}
 {{ include('nav.views.html') }}
 {% endblock %}
 
@@ -18,8 +17,8 @@
     <label>Nombre: <input type="text" name="nombre" value={{ ap.nombre }}></label><br>
     <label>Email: <input type="email" name="email" value={{ ap.email }}></label><br>
     <label>Telefono: <input type="tel" name="telefono" value={{ ap.telefono }}></label><br>
-    <label>Edad: <input type="text" name="edad" value={{ ap.edad }}></label><br>
-    <label>Talla de calzado: <input type="text" name="talla_calzado" value={{ ap.talla_calzado }}></label><br>
+    <label>Edad: <input type="text" name="edad" maxlength="2" max="99" value={{ ap.edad }}></label><br>
+    <label>Talla de calzado: <input type="text" name="talla_calzado" maxlength="2" value={{ ap.talla_calzado }}></label><br>
     <label>Altura: <input type="range" name="altura" min="100" max="200" step="10" value={{ ap.altura }} list="tickmarks">
         <datalist id="tickmarks">
             <option value="100" label="1mts">
@@ -43,16 +42,13 @@
         <option>castanio</option>
     </select></label><br>
     <label>Fecha de turno: <input type="date" name="fecha_turno" value={{ ap.fecha_turno }}></label><br>
-    <label>Horario de turno(hh:min): <input type="time" name="horario_turno" value={{ ap.horario_turno }}></label><br>
-    {% if (ap.image) %}
+    <label>Horario de turno(hh:min): <input type="time" min="08:00" max="17:00" step="900" name="horario_turno" value={{ ap.horario_turno }}></label><br>
+    {% if (ap.diagnostico) %}
         <label>Diagnostico</label><br>
-        <img  class="diagnostico" src="data:diagnostico/png;base64,{{ image_base_64 }}" />
+        <img width="40%" src="data:diagnostico/png;base64,{{ diagnostico64 }}" />
     {% endif %}
 
-    <input type="submit" value="Enviar" />
+    <br><input type="submit" value="Enviar" />
     <button type="button" onclick="location.href='list_appointments'">Cancelar</button>
-    <!--<form method="get" id="return" action="/list_appointments">
-        <button type="submit" form="return">Cancelar</button>
-    </form>-->
 </form>
 {% endblock %}

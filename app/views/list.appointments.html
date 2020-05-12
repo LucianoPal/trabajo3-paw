@@ -3,7 +3,6 @@
 {% block title %}List Appointments{% endblock %}
 
 {% block header %}
-{{ include('validation_errors.html') }}
 {{ include('nav.views.html') }}
 {% endblock %}
 
@@ -28,10 +27,9 @@
                         <th scope="col">Actions</th>
                     </tr>
                     </thead>
-                    {% else %}
-                    <span>There is no registered appointments at the moment.</span>
-                    {% endif %}
-
+            {% else %}
+                <p> There is no registered appointments at the moment.</p>
+            {% endif %}
 
                 {% for appointment in appointments %}
                     <tbody>
