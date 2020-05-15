@@ -82,6 +82,7 @@ class ApController extends Controller
     public function uptAp() {
         $appointment = new Appointment();
         $params = $this->comparacion();
+        var_dump($params);
         $respuesta = $appointment->validarUpdate($params, $_POST['id']);
         $errores = array_shift($respuesta);
         if ($errores == "Correcto") {
@@ -115,10 +116,13 @@ class ApController extends Controller
         if ($old["talla_calzado"] != $_POST["talla_calzado"]) $params["talla_calzado"] = $_POST["talla_calzado"];
         if ($old["altura"] != $_POST["altura"]) $params["altura"] = $_POST["altura"];
         if ($old["fecha_nacimiento"] != $_POST["fecha_nacimiento"]) $params["fecha_nacimiento"] = $_POST["fecha_nacimiento"];
-        if ($old["color_pelo"] != $_POST["color_pelo"]) $params["color_pelo"] = $_POST["color_pelo"];
-        $params["fecha_turno"] = $_POST["fecha_turno"];
-        $params["horario_turno"] = $_POST["horario_turno"];
-
+        if ($_POST["color_pelo"] != null) {
+            $params["color_pelo"] = $_POST["color_pelo"];
+        }
+        if ($old["fecha_turno"] != $_POST["fecha_turno"] || $old["horario_turno"] != $_POST["horario_turno"]) {
+            $params["fecha_turno"] = $_POST["fecha_turno"];
+            $params["horario_turno"] = $_POST["horario_turno"];
+        }
         return $params;
     }
 }
