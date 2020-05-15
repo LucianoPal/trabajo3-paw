@@ -2,7 +2,7 @@
 ## Guía de Ejecución:
 <br>
 En primer lugar, podemos mencionar que esta aplicación fue probada en Windows 10 Home, utilizando el siguiente software instalado: wamp server versión 3.2.0 - 64bit: PHP versión 7.3.12, MariaDB versión 10.4.10 y MySQL versión 8.0.18. <br>
-También es importante aclarar un cambio necesario en uno de los archivos de configuración para poder cumplir con una de las consignas de este trabajo. La misma impone la restricción de que el sistema solo debe poder cargar imágenes de hasta 10 MB. Para hacer esto posible hay que cambiar en el archivo de configuración de php la directiva post_max_size (por defecto establecida en 8 MB). <br>
+También es importante aclarar un par de cambios necesarios en un archivo de configuración para poder cumplir con una de las consignas de este trabajo. La misma impone la restricción de que el sistema solo debe poder cargar imágenes de hasta 10 MB. Para hacer esto posible hay que cambiar en el archivo de configuración de php las directivas post_max_size (por defecto establecida en 8 MB) y upload_max_filesize. Para subir archivos grandes, el primero debe ser mayor que el segundo. <br>
 Para correr la aplicación se deben seguir los siguientes pasos: <br>
 1. Posicionados en el path en el cual se aloja el proyecto, ejecutar el comando composer install el cual se va a encargar de administrar, descargar e instalar nuestras dependencias de manera automática. <br>
 2. Luego ejecutamos la siguiente instrucción en la línea de comandos: php -S ip:[port] la cual va a levantar el servidor interno de php diseñado para ayudar al desarrollo de aplicaciones y/o llevar a cabo casos de prueba.
