@@ -13,7 +13,7 @@
 
 {% block main %}
 <form class="edit" action="/upt_appointment" method="post" enctype="multipart/form-data">
-    <label>ID: <input type="id" name="id" readonly value={{ ap.id }}></label><br>
+    <input type="id" name="id" readonly value={{ ap.id }} style="display: none">
     <label>Nombre: <input type="text" name="nombre" value={{ ap.nombre }}></label><br>
     <label>Email: <input type="email" name="email" value={{ ap.email }}></label><br>
     <label>Telefono: <input type="tel" name="telefono" value={{ ap.telefono }}></label><br>

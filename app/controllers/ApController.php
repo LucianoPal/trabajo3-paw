@@ -4,16 +4,8 @@ namespace App\Controllers;
 use App\Core\Controller;
 use App\models\Appointment;
 
-
-/*/**
- * @property Appointment models
- */
 class ApController extends Controller
 {
-    /*public function __construct()
-    {
-        $this->models = new Appointment();
-    }*/
 
     public function index()
     {
@@ -82,7 +74,6 @@ class ApController extends Controller
     public function uptAp() {
         $appointment = new Appointment();
         $params = $this->comparacion();
-        var_dump($params);
         $respuesta = $appointment->validarUpdate($params, $_POST['id']);
         $errores = array_shift($respuesta);
         if ($errores == "Correcto") {
