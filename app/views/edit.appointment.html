@@ -14,7 +14,7 @@
 {% block main %}
 <form class="edit" action="/upt_appointment" method="post" enctype="multipart/form-data">
     <input type="id" name="id" readonly value={{ ap.id }} style="display: none">
-    <label>Nombre: <input type="text" name="nombre" value={{ ap.nombre }}></label><br>
+    <label>Nombre: <input type="text" name="nombre" value="{{ ap.nombre }}"></label><br>
     <label>Email: <input type="email" name="email" value={{ ap.email }}></label><br>
     <label>Telefono: <input type="tel" name="telefono" value={{ ap.telefono }}></label><br>
     <label>Edad: <input type="text" name="edad" maxlength="2" max="99" value={{ ap.edad }}></label><br>
@@ -34,7 +34,7 @@
             <option value="200" label="2mts">
         </datalist></label><br>
     <label>Fecha de nacimiento: <input type="date" name="fecha_nacimiento" value={{ ap.fecha_nacimiento }}></label><br>
-    <label>Color de pelo: <select name="color_pelo">
+    <label>Color de pelo: <select required name="color_pelo">
         <option value="" selected disabled>seleccione el color</option>
         <option>morocho</option>
         <option>rubio</option>

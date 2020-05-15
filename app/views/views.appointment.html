@@ -13,7 +13,7 @@
 
 {% block main %}
     <form class="view">
-        <label>Nombre: <input type="text" name="nombre" readonly value={{ ap.nombre }}></label><br>
+        <label>Nombre: <input type="text" name="nombre" readonly value="{{ ap.nombre }}"></label><br>
         <label>Email: <input type="email" name="email" readonly value={{ ap.email }}></label><br>
         <label>Telefono: <input type="tel" name="telefono" readonly value={{ ap.telefono }}></label><br>
         <label>Edad: <input type="text" name="edad" readonly value={{ ap.edad }}></label><br>
