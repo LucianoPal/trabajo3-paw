@@ -9,7 +9,7 @@ use Monolog\Logger as MonologLogger;
 /**
  * Load config
  */
-App::bind('config', require 'config.php');
+App::bind('config', require 'config.php.example');
 
 /**
  * Load logger object

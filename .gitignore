@@ -6,3 +6,4 @@
 *app/views/cache/
 *vendor/
 *logs/
+config.php
